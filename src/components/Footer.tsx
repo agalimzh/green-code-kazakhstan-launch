@@ -1,3 +1,4 @@
+
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 
 interface FooterProps {
@@ -12,9 +13,7 @@ const Footer = ({ language }: FooterProps) => {
         { name: 'Главная', href: '#home' },
         { name: 'Курсы', href: '#courses' },
         { name: 'О нас', href: '#about' },
-        { name: 'Карьерный рост', href: '#career' },
         { name: 'FAQ', href: '#faq' },
-        { name: 'Блог', href: '#blog' },
         { name: 'Контакты', href: '#contact' },
       ],
       address: 'г. Алматы, ул. Кунаева, 77',
@@ -28,9 +27,7 @@ const Footer = ({ language }: FooterProps) => {
         { name: 'Басты бет', href: '#home' },
         { name: 'Курстар', href: '#courses' },
         { name: 'Біз туралы', href: '#about' },
-        { name: 'Мансап өсу', href: '#career' },
         { name: 'FAQ', href: '#faq' },
-        { name: 'Блог', href: '#blog' },
         { name: 'Байланыс', href: '#contact' },
       ],
       address: 'Алматы қ., Кунаев к-сі, 77',
@@ -47,23 +44,23 @@ const Footer = ({ language }: FooterProps) => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div>
-            <div className="mb-4 flex items-center">
+            <a href="#home" className="mb-4 flex items-center">
               <img src="/favicon.ico" alt="Proitivity School" className="h-10 mr-3" />
               <div className="text-xl font-bold">Proitivity School</div>
-            </div>
+            </a>
             <p className="text-white/80 mb-4">{category}</p>
             <p className="text-white/80 mb-4">{address}</p>
             <div className="flex space-x-4">
-              <a href="#" aria-label="Facebook" className="text-white/80 hover:text-white transition-colors">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-white/80 hover:text-white transition-colors">
                 <Facebook size={20} />
               </a>
-              <a href="#" aria-label="Instagram" className="text-white/80 hover:text-white transition-colors">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-white/80 hover:text-white transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="#" aria-label="Twitter" className="text-white/80 hover:text-white transition-colors">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-white/80 hover:text-white transition-colors">
                 <Twitter size={20} />
               </a>
-              <a href="#" aria-label="LinkedIn" className="text-white/80 hover:text-white transition-colors">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-white/80 hover:text-white transition-colors">
                 <Linkedin size={20} />
               </a>
             </div>
@@ -102,17 +99,20 @@ const Footer = ({ language }: FooterProps) => {
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4">Подписаться на новости</h3>
-            <div className="flex">
-              <input 
-                type="email" 
-                placeholder="Email" 
-                className="px-4 py-2 bg-white/10 text-white placeholder:text-white/50 rounded-l-md focus:outline-none w-full"
-              />
-              <button className="bg-white text-proitivity-green-dark px-4 py-2 rounded-r-md">
-                OK
-              </button>
-            </div>
+            <h3 className="text-lg font-semibold mb-4">{language === 'ru' ? 'Подписаться на новости' : 'Жаңалықтарға жазылу'}</h3>
+            <form onSubmit={(e) => {e.preventDefault(); alert(language === 'ru' ? 'Спасибо за подписку!' : 'Жазылғаныңыз үшін рахмет!')}}>
+              <div className="flex">
+                <input 
+                  type="email" 
+                  placeholder="Email" 
+                  className="px-4 py-2 bg-white/10 text-white placeholder:text-white/50 rounded-l-md focus:outline-none w-full"
+                  required
+                />
+                <button type="submit" className="bg-white text-proitivity-green-dark px-4 py-2 rounded-r-md hover:bg-proitivity-blue-light transition-colors">
+                  OK
+                </button>
+              </div>
+            </form>
           </div>
         </div>
         

@@ -8,6 +8,7 @@ import CTASection from '../components/CTASection';
 import ContactForm from '../components/ContactForm';
 import Footer from '../components/Footer';
 import CourseCard from '../components/CourseCard';
+import FAQ from '../components/FAQ';
 import { Leaf } from 'lucide-react';
 
 const Index = () => {
@@ -93,10 +94,10 @@ const Index = () => {
         <Advantages language={language} />
         
         {/* Courses Section */}
-        <section id="courses" className="section-padding">
+        <section id="courses" className="py-16">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gradient">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-proitivity-green-dark to-proitivity-blue-dark bg-clip-text text-transparent">
                 {coursesSectionTitle[language].title}
               </h2>
               <p className="text-lg text-proitivity-neutral-dark max-w-2xl mx-auto">
@@ -122,7 +123,7 @@ const Index = () => {
         </section>
         
         {/* Why Choose Us */}
-        <section id="about" className="section-padding bg-proitivity-blue-light/30 relative overflow-hidden">
+        <section id="about" className="py-16 bg-proitivity-blue-light/30 relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('/leaf-pattern.png')] opacity-5 z-0"></div>
           <div className="container mx-auto px-4 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -161,7 +162,7 @@ const Index = () => {
               </div>
               
               <div className="order-1 lg:order-2">
-                <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gradient">
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-proitivity-green-dark to-proitivity-blue-dark bg-clip-text text-transparent">
                   {language === 'ru' 
                     ? 'Мы помогаем взрослым осваивать IT-навыки и расти в карьере' 
                     : 'Біз ересектерге IT-дағдыларын игеруге және мансапта өсуге көмектесеміз'}
@@ -180,6 +181,9 @@ const Index = () => {
             </div>
           </div>
         </section>
+        
+        {/* FAQ Section */}
+        <FAQ language={language} />
         
         {/* Testimonials */}
         <Testimonials language={language} />

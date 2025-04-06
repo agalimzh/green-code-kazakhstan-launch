@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -17,18 +18,14 @@ const Navbar = ({ language, onLanguageChange }: NavbarProps) => {
       { name: 'Главная', href: '#home' },
       { name: 'Курсы', href: '#courses' },
       { name: 'О нас', href: '#about' },
-      { name: 'Карьерный рост', href: '#career' },
       { name: 'FAQ', href: '#faq' },
-      { name: 'Блог', href: '#blog' },
       { name: 'Контакты', href: '#contact' },
     ],
     kz: [
       { name: 'Басты бет', href: '#home' },
       { name: 'Курстар', href: '#courses' },
       { name: 'Біз туралы', href: '#about' },
-      { name: 'Мансап өсу', href: '#career' },
       { name: 'FAQ', href: '#faq' },
-      { name: 'Блог', href: '#blog' },
       { name: 'Байланыс', href: '#contact' },
     ],
   };
@@ -54,7 +51,7 @@ const Navbar = ({ language, onLanguageChange }: NavbarProps) => {
     }`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
-        <a href="#" className="text-2xl font-bold text-proitivity-green-dark flex items-center">
+        <a href="#home" className="text-2xl font-bold text-proitivity-green-dark flex items-center">
           <img src="/favicon.ico" alt="Proitivity School" className="h-10 mr-3" />
           Proitivity School
         </a>

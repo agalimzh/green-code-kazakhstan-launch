@@ -24,6 +24,14 @@ const Hero = ({ language }: HeroProps) => {
 
   const { heading, subheading, cta1, cta2 } = content[language];
 
+  const handleLearnMoreClick = () => {
+    document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleFreeClassClick = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section id="home" className="pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-br from-white to-proitivity-blue-light relative overflow-hidden">
       {/* Animated background elements */}
@@ -45,11 +53,18 @@ const Hero = ({ language }: HeroProps) => {
                 {subheading}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="bg-proitivity-green-dark hover:bg-proitivity-green-light text-white px-6 py-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                <Button 
+                  className="bg-proitivity-green-dark hover:bg-proitivity-green-light text-white px-6 py-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
+                  onClick={handleLearnMoreClick}
+                >
                   {cta1}
                   <ChevronRight className="ml-2 h-4 w-4" />
                 </Button>
-                <Button variant="outline" className="border-2 border-proitivity-green-dark text-proitivity-green-dark hover:bg-proitivity-green-dark hover:text-white px-6 py-6 transition-all transform hover:-translate-y-1">
+                <Button 
+                  variant="outline" 
+                  className="border-2 border-proitivity-green-dark text-proitivity-green-dark hover:bg-proitivity-green-dark hover:text-white px-6 py-6 transition-all transform hover:-translate-y-1"
+                  onClick={handleFreeClassClick}
+                >
                   {cta2}
                 </Button>
               </div>

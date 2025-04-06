@@ -22,6 +22,10 @@ const CTASection = ({ language }: CTASectionProps) => {
 
   const { title, subtitle, buttonText } = content[language];
 
+  const handleSignUpClick = () => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section className="py-16 bg-gradient-to-r from-proitivity-green-dark to-proitivity-blue-dark text-white relative overflow-hidden">
       {/* Animated background elements */}
@@ -35,7 +39,10 @@ const CTASection = ({ language }: CTASectionProps) => {
         <div className="max-w-3xl mx-auto transform hover:scale-[1.01] transition-transform duration-300">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 drop-shadow-md">{title}</h2>
           <p className="text-lg mb-8 max-w-2xl mx-auto opacity-90">{subtitle}</p>
-          <Button className="bg-white text-proitivity-green-dark hover:bg-proitivity-blue-light hover:text-proitivity-green-dark text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+          <Button 
+            className="bg-white text-proitivity-green-dark hover:bg-proitivity-blue-light hover:text-proitivity-green-dark text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
+            onClick={handleSignUpClick}
+          >
             {buttonText}
             <ChevronRight className="ml-2 h-5 w-5" />
           </Button>
