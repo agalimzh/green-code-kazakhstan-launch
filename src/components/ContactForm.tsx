@@ -1,3 +1,4 @@
+
 import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -87,11 +88,10 @@ const ContactForm = ({ language }: ContactFormProps) => {
     setIsSubmitting(true);
     
     try {
-      // Send email using EmailJS
-      // Replace these with your actual EmailJS service ID, template ID, and public key
-      const serviceId = 'service_proitivity';
-      const templateId = 'template_contact_form';
-      const publicKey = 'YOUR_EMAILJS_PUBLIC_KEY';
+      // Send email using EmailJS with updated credentials
+      const serviceId = 'proitivity.school';
+      const templateId = 'template_sjrrjgp';
+      const publicKey = 'xZAgwMtbYsWERz5Es';
 
       // Prepare template parameters
       const templateParams = {
