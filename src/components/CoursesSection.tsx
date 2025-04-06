@@ -1,3 +1,4 @@
+
 import { useCallback } from 'react';
 import CourseCard from './CourseCard';
 import { 
@@ -111,7 +112,11 @@ const CoursesSection = ({ language }: CoursesSectionProps) => {
           </p>
         </div>
         
-        <div className="relative px-4 md:px-10">
+        <div className="relative mx-auto max-w-7xl">
+          {/* Visual indicators for scrolling */}
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-16 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-16 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+          
           <Carousel
             opts={{
               align: "start",
@@ -135,9 +140,29 @@ const CoursesSection = ({ language }: CoursesSectionProps) => {
               ))}
             </CarouselContent>
             
-            <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 md:-translate-x-0 z-10" />
-            <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 md:translate-x-0 z-10" />
+            <div className="flex justify-between items-center mt-8">
+              <div className="flex items-center gap-2">
+                <div className="text-sm text-proitivity-neutral-dark hidden md:block">{language === 'ru' ? 'Прокрутите для просмотра всех курсов' : 'Барлық курстарды қарау үшін айналдырыңыз'}</div>
+              </div>
+              
+              <div className="flex gap-2">
+                <CarouselPrevious className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-proitivity-green-dark bg-white text-proitivity-green-dark hover:bg-proitivity-green-light hover:text-white transition-colors" />
+                <CarouselNext className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-proitivity-green-dark bg-white text-proitivity-green-dark hover:bg-proitivity-green-light hover:text-white transition-colors" />
+              </div>
+            </div>
           </Carousel>
+          
+          {/* Visual indicator for mobile swipe */}
+          <div className="flex justify-center mt-2 md:hidden">
+            <div className="flex gap-1.5">
+              {[...Array(4)].map((_, i) => (
+                <div 
+                  key={i} 
+                  className={`h-2 rounded-full ${i === 0 ? 'w-4 bg-proitivity-green-dark' : 'w-2 bg-proitivity-neutral-medium'}`} 
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
