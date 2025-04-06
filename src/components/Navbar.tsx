@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import LanguageToggle from './LanguageToggle';
+import logoSvg from '../assets/logo.svg';
 
 interface NavbarProps {
   language: 'ru' | 'kz';
@@ -56,7 +57,7 @@ const Navbar = ({ language, onLanguageChange }: NavbarProps) => {
       <div className="container mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
         <a href="#" className="text-2xl font-bold text-proitivity-green-dark flex items-center">
-          <img src="/placeholder.svg" alt="Proitivity School" className="h-10 mr-3" />
+          <img src={logoSvg} alt="Proitivity School" className="h-10 mr-3" />
           Proitivity School
         </a>
 

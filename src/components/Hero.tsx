@@ -1,6 +1,8 @@
 
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import heroImage from '../assets/hero-image.jpg';
+import leafPattern from '../assets/leaf-pattern.svg';
 
 interface HeroProps {
   language: 'ru' | 'kz';
@@ -61,7 +63,7 @@ const Hero = ({ language }: HeroProps) => {
               <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-proitivity-green-light to-proitivity-blue-dark opacity-60 blur-xl animate-pulse"></div>
               <div className="absolute -inset-1 rounded-lg bg-white/30 backdrop-blur-sm"></div>
               <img 
-                src="/placeholder.svg" 
+                src={heroImage || '/placeholder.svg'} 
                 alt="IT Education" 
                 className="object-cover rounded-lg shadow-xl relative w-full max-w-lg transform transition-transform hover:scale-105 duration-500"
               />

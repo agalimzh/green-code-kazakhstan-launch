@@ -1,5 +1,6 @@
 
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import logoSvg from '../assets/logo.svg';
 
 interface FooterProps {
   language: 'ru' | 'kz';
@@ -49,7 +50,7 @@ const Footer = ({ language }: FooterProps) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="mb-4 flex items-center">
-              <img src="/placeholder.svg" alt="Proitivity School" className="h-10 mr-3" />
+              <img src={logoSvg} alt="Proitivity School" className="h-10 mr-3" />
               <div className="text-xl font-bold">Proitivity School</div>
             </div>
             <p className="text-white/80 mb-4">{category}</p>
