@@ -93,15 +93,15 @@ const ContactForm = ({ language }: ContactFormProps) => {
       const templateId = 'template_sjrrjgp';
       const publicKey = 'xZAgwMtbYsWERz5Es';
 
-      // Prepare template parameters
+      // Update template parameters to match your EmailJS template variables
       const templateParams = {
         from_name: formData.name,
-        from_email: formData.email,
-        from_phone: formData.phone,
+        reply_to: formData.email,
+        phone_number: formData.phone,
         message: formData.message,
-        to_email: 'proitivity.school@gmail.com',
-        subject: `Contact form message from ${formData.name}`
       };
+
+      console.log('Sending email with params:', templateParams);
 
       // Send the email
       const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
