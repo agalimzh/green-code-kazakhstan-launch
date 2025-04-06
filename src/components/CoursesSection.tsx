@@ -1,6 +1,13 @@
 
 import { useCallback } from 'react';
 import CourseCard from './CourseCard';
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from "@/components/ui/carousel";
 
 interface CoursesSectionProps {
   language: 'ru' | 'kz';
@@ -105,19 +112,34 @@ const CoursesSection = ({ language }: CoursesSectionProps) => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {courses[language].map((course, index) => (
-            <CourseCard
-              key={index}
-              title={course.title}
-              description={course.description}
-              duration={course.duration}
-              price={course.price}
-              image={course.image}
-              ctaText={course.ctaText}
-              popular={course.popular}
-            />
-          ))}
+        <div className="relative">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {courses[language].map((course, index) => (
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                  <CourseCard
+                    title={course.title}
+                    description={course.description}
+                    duration={course.duration}
+                    price={course.price}
+                    image={course.image}
+                    ctaText={course.ctaText}
+                    popular={course.popular}
+                  />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center mt-8">
+              <CarouselPrevious className="relative static translate-y-0 left-0 mr-4" />
+              <CarouselNext className="relative static translate-y-0 right-0" />
+            </div>
+          </Carousel>
         </div>
       </div>
     </section>
