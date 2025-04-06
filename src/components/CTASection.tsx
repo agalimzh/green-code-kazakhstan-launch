@@ -40,11 +40,13 @@ const CTASection = ({ language }: CTASectionProps) => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 drop-shadow-md">{title}</h2>
           <p className="text-lg mb-8 max-w-2xl mx-auto opacity-90">{subtitle}</p>
           <Button 
-            className="bg-[#F97316] text-white hover:bg-[#F97316]/90 text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 animate-pulse"
+            className="bg-[#F97316] text-white hover:bg-[#F97316]/90 text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 relative overflow-hidden btn-pulse"
             onClick={handleSignUpClick}
           >
-            {buttonText}
-            <ChevronRight className="ml-2 h-5 w-5" />
+            <span className="relative z-10">{buttonText}</span>
+            <ChevronRight className="ml-2 h-5 w-5 relative z-10" />
+            {/* Pulse effect overlay */}
+            <span className="absolute inset-0 bg-white/20 opacity-0 animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]"></span>
           </Button>
         </div>
         

@@ -82,10 +82,12 @@ const CourseCard = ({
             {ctaText}
           </Button>
           <Button 
-            className="bg-proitivity-green-dark hover:bg-proitivity-green-light text-white transition-all duration-300"
+            className="bg-[#F97316] hover:bg-[#F97316]/90 text-white transition-all duration-300 relative overflow-hidden"
             onClick={handleSignUpClick}
           >
-            Записаться
+            <span className="relative z-10">Записаться</span>
+            {/* Subtle pulse effect */}
+            <span className="absolute inset-0 bg-white/10 opacity-0 animate-[pulse_2.5s_ease-in-out_infinite]"></span>
           </Button>
         </div>
       </CardFooter>
