@@ -22,6 +22,11 @@ const CourseCard = ({
   ctaText,
   popular = false 
 }: CourseCardProps) => {
+  const handleCTAClick = () => {
+    // Scroll to contact form when clicking on course CTA button
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+  
   return (
     <Card className="overflow-hidden border border-proitivity-neutral-medium/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 group relative">
       {popular && (
@@ -60,7 +65,10 @@ const CourseCard = ({
       </CardContent>
       <CardFooter className="flex justify-between items-center border-t border-proitivity-neutral-medium/50 pt-4 bg-proitivity-neutral-light/30 group-hover:bg-proitivity-blue-light/20 transition-colors duration-300">
         <div className="font-bold text-lg">{price}</div>
-        <Button className="bg-proitivity-green-dark hover:bg-proitivity-green-light text-white group-hover:shadow-md transition-all duration-300">
+        <Button 
+          className="bg-proitivity-green-dark hover:bg-proitivity-green-light text-white group-hover:shadow-md transition-all duration-300"
+          onClick={handleCTAClick}
+        >
           {ctaText}
         </Button>
       </CardFooter>

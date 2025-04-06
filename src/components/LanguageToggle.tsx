@@ -7,6 +7,12 @@ interface LanguageToggleProps {
 }
 
 const LanguageToggle = ({ onChange, currentLang }: LanguageToggleProps) => {
+  const handleLanguageChange = (lang: 'ru' | 'kz') => {
+    onChange(lang);
+    // Save language preference to localStorage for persistence
+    localStorage.setItem('preferredLanguage', lang);
+  };
+
   return (
     <div className="flex rounded-full overflow-hidden border border-proitivity-green-dark">
       <Button
@@ -16,7 +22,7 @@ const LanguageToggle = ({ onChange, currentLang }: LanguageToggleProps) => {
             ? 'bg-proitivity-green-dark text-white' 
             : 'bg-transparent text-proitivity-green-dark hover:text-proitivity-green-dark hover:bg-proitivity-blue-light/50'
         }`}
-        onClick={() => onChange('ru')}
+        onClick={() => handleLanguageChange('ru')}
       >
         RU
       </Button>
@@ -27,7 +33,7 @@ const LanguageToggle = ({ onChange, currentLang }: LanguageToggleProps) => {
             ? 'bg-proitivity-green-dark text-white' 
             : 'bg-transparent text-proitivity-green-dark hover:text-proitivity-green-dark hover:bg-proitivity-blue-light/50'
         }`}
-        onClick={() => onChange('kz')}
+        onClick={() => handleLanguageChange('kz')}
       >
         KZ
       </Button>
