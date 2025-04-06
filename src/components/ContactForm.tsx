@@ -88,40 +88,63 @@ const ContactForm = ({ language }: ContactFormProps) => {
     setIsSubmitting(true);
     
     try {
-      // Send email using EmailJS with updated credentials
+      // Send email using EmailJS with provided credentials
       const serviceId = 'proitivity.school';
       const templateId = 'template_sjrrjgp';
       const publicKey = 'xZAgwMtbYsWERz5Es';
 
-      // Update template parameters to match your EmailJS template variables
+      // Try using standard variable names that EmailJS templates typically recognize
       const templateParams = {
+        user_name: formData.name,          // Common template variable
+        user_email: formData.email,        // Common template variable
+        user_phone: formData.phone,        // Common template variable
+        message: formData.message,         // Common template variable
+        
+        // Backup variables in case the template uses different naming patterns
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        
+        // Additional variables sometimes used in templates
+        subject: `New contact from ${formData.name}`,
         from_name: formData.name,
-        reply_to: formData.email,
-        phone_number: formData.phone,
-        message: formData.message,
+        to_name: 'Proitivity School',
       };
 
       console.log('Sending email with params:', templateParams);
 
-      // Send the email
-      const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
-      console.log('Email sent successfully:', result.text);
+      // Send the email directly with the form reference
+      // This ensures all form fields are included in the submission
+      if (formRef.current) {
+        const result = await emailjs.sendForm(
+          serviceId, 
+          templateId, 
+          formRef.current, 
+          publicKey
+        );
+        
+        console.log('Email sent successfully:', result.text);
+      } else {
+        // Fallback to send method if form ref is not available
+        const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+        console.log('Email sent successfully (fallback method):', result.text);
+      }
       
       // Show success message
       toast({
         title: language === 'ru' ? 'Успешно!' : 'Сәтті!',
-        description: successMessage,
+        description: content[language].successMessage,
       });
       
       // Reset form
-      setFormData({ name: '', email: '', phone: '', message: '' });
+      setFormData({ name: '', email: '', message: '', phone: '' });
     } catch (error) {
       console.error('Failed to send email:', error);
       
       // Show error message
       toast({
         title: language === 'ru' ? 'Ошибка' : 'Қате',
-        description: errorMessage,
+        description: content[language].errorMessage,
         variant: 'destructive'
       });
     } finally {
@@ -142,8 +165,8 @@ const ContactForm = ({ language }: ContactFormProps) => {
     <section id="contact" className="section-padding bg-white py-16">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-proitivity-green-dark to-proitivity-blue-dark bg-clip-text text-transparent">{title}</h2>
-          <p className="text-lg text-proitivity-neutral-dark max-w-2xl mx-auto">{subtitle}</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-proitivity-green-dark to-proitivity-blue-dark bg-clip-text text-transparent">{content[language].title}</h2>
+          <p className="text-lg text-proitivity-neutral-dark max-w-2xl mx-auto">{content[language].subtitle}</p>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -151,7 +174,7 @@ const ContactForm = ({ language }: ContactFormProps) => {
             <form ref={formRef} onSubmit={handleSubmit}>
               <div className="mb-6">
                 <label htmlFor="name" className="block text-sm font-medium text-proitivity-neutral-dark mb-2">
-                  {name}
+                  {content[language].name}
                 </label>
                 <Input
                   id="name"
@@ -165,7 +188,7 @@ const ContactForm = ({ language }: ContactFormProps) => {
               
               <div className="mb-6">
                 <label htmlFor="email" className="block text-sm font-medium text-proitivity-neutral-dark mb-2">
-                  {email}
+                  {content[language].email}
                 </label>
                 <Input
                   id="email"
@@ -180,7 +203,7 @@ const ContactForm = ({ language }: ContactFormProps) => {
               
               <div className="mb-6">
                 <label htmlFor="phone" className="block text-sm font-medium text-proitivity-neutral-dark mb-2">
-                  {phone}
+                  {content[language].phone}
                 </label>
                 <Input
                   id="phone"
@@ -194,7 +217,7 @@ const ContactForm = ({ language }: ContactFormProps) => {
               
               <div className="mb-6">
                 <label htmlFor="message" className="block text-sm font-medium text-proitivity-neutral-dark mb-2">
-                  {message}
+                  {content[language].message}
                 </label>
                 <Textarea
                   id="message"
@@ -218,13 +241,13 @@ const ContactForm = ({ language }: ContactFormProps) => {
                     </svg>
                     {language === 'ru' ? 'Отправка...' : 'Жіберілуде...'}
                   </span>
-                ) : buttonText}
+                ) : content[language].buttonText}
               </Button>
             </form>
           </div>
           
           <div className="flex flex-col justify-center">
-            <h3 className="text-2xl font-semibold mb-8 text-proitivity-green-dark">{contactInfo}</h3>
+            <h3 className="text-2xl font-semibold mb-8 text-proitivity-green-dark">{content[language].contactInfo}</h3>
             
             <div className="space-y-6">
               <div className="flex items-start">
@@ -232,9 +255,9 @@ const ContactForm = ({ language }: ContactFormProps) => {
                   <Mail className="h-6 w-6 text-proitivity-green-dark" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-proitivity-neutral-dark">{emailLabel}</h4>
-                  <a href={`mailto:${emailAddress}`} className="text-proitivity-green-dark hover:underline">
-                    {emailAddress}
+                  <h4 className="font-medium text-proitivity-neutral-dark">{content[language].emailLabel}</h4>
+                  <a href={`mailto:${content[language].emailAddress}`} className="text-proitivity-green-dark hover:underline">
+                    {content[language].emailAddress}
                   </a>
                 </div>
               </div>
@@ -244,9 +267,9 @@ const ContactForm = ({ language }: ContactFormProps) => {
                   <Phone className="h-6 w-6 text-proitivity-green-dark" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-proitivity-neutral-dark">{phoneLabel}</h4>
-                  <a href={`tel:${phoneNumber.replace(/\s+/g, '')}`} className="text-proitivity-green-dark hover:underline">
-                    {phoneNumber}
+                  <h4 className="font-medium text-proitivity-neutral-dark">{content[language].phoneLabel}</h4>
+                  <a href={`tel:${content[language].phoneNumber.replace(/\s+/g, '')}`} className="text-proitivity-green-dark hover:underline">
+                    {content[language].phoneNumber}
                   </a>
                 </div>
               </div>
@@ -256,9 +279,9 @@ const ContactForm = ({ language }: ContactFormProps) => {
                   <MessageCircle className="h-6 w-6 text-proitivity-green-dark" />
                 </div>
                 <div>
-                  <h4 className="font-medium text-proitivity-neutral-dark">{chatLabel}</h4>
+                  <h4 className="font-medium text-proitivity-neutral-dark">{content[language].chatLabel}</h4>
                   <a href="#" onClick={handleOpenChat} className="text-proitivity-green-dark hover:underline">
-                    {chatText}
+                    {content[language].chatText}
                   </a>
                 </div>
               </div>
