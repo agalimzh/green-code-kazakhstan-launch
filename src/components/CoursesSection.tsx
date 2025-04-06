@@ -1,4 +1,3 @@
-
 import { useCallback } from 'react';
 import CourseCard from './CourseCard';
 import { 
@@ -112,7 +111,7 @@ const CoursesSection = ({ language }: CoursesSectionProps) => {
           </p>
         </div>
         
-        <div className="relative">
+        <div className="relative px-4 md:px-10">
           <Carousel
             opts={{
               align: "start",
@@ -135,10 +134,9 @@ const CoursesSection = ({ language }: CoursesSectionProps) => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="flex justify-center mt-8">
-              <CarouselPrevious className="relative static translate-y-0 left-0 mr-4" />
-              <CarouselNext className="relative static translate-y-0 right-0" />
-            </div>
+            
+            <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 md:-translate-x-0 z-10" />
+            <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 md:translate-x-0 z-10" />
           </Carousel>
         </div>
       </div>
