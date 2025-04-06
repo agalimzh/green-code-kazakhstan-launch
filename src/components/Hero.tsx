@@ -1,8 +1,6 @@
 
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import heroImage from '../assets/hero-image.jpg';
-import leafPattern from '../assets/leaf-pattern.svg';
 
 interface HeroProps {
   language: 'ru' | 'kz';
@@ -29,7 +27,7 @@ const Hero = ({ language }: HeroProps) => {
   return (
     <section id="home" className="pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-br from-white to-proitivity-blue-light relative overflow-hidden">
       {/* Animated background elements */}
-      <div className="absolute inset-0 bg-[url('/leaf-pattern.png')] opacity-5 z-0"></div>
+      <div className="absolute inset-0 bg-[url('/hero-bg.png')] opacity-5 z-0"></div>
       <div className="absolute top-0 left-0 w-full h-full">
         <div className="absolute top-[10%] left-[5%] w-16 h-16 md:w-24 md:h-24 bg-proitivity-green-light/10 rounded-full blur-xl animate-pulse"></div>
         <div className="absolute bottom-[20%] right-[10%] w-20 h-20 md:w-32 md:h-32 bg-proitivity-blue-medium/10 rounded-full blur-xl animate-pulse" style={{animationDelay: '1s'}}></div>
@@ -63,7 +61,7 @@ const Hero = ({ language }: HeroProps) => {
               <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-proitivity-green-light to-proitivity-blue-dark opacity-60 blur-xl animate-pulse"></div>
               <div className="absolute -inset-1 rounded-lg bg-white/30 backdrop-blur-sm"></div>
               <img 
-                src={heroImage || '/placeholder.svg'} 
+                src="/placeholder.svg" 
                 alt="IT Education" 
                 className="object-cover rounded-lg shadow-xl relative w-full max-w-lg transform transition-transform hover:scale-105 duration-500"
               />

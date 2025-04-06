@@ -9,9 +9,6 @@ import ContactForm from '../components/ContactForm';
 import Footer from '../components/Footer';
 import CourseCard from '../components/CourseCard';
 import { Leaf } from 'lucide-react';
-import course1Image from '../assets/course1.jpg';
-import course2Image from '../assets/course2.jpg';
-import course3Image from '../assets/course3.jpg';
 
 const Index = () => {
   const [language, setLanguage] = useState<'ru' | 'kz'>('ru');
@@ -23,7 +20,7 @@ const Index = () => {
         description: 'Освойте продвинутые функции Excel и создавайте интерактивные дашборды в Power BI.',
         duration: '2 месяца (8 недель)',
         price: '80 000 ₸',
-        image: course1Image || '/placeholder.svg',
+        image: '/placeholder.svg',
         ctaText: 'Подробнее',
       },
       {
@@ -31,7 +28,7 @@ const Index = () => {
         description: 'Научитесь извлекать данные с помощью SQL и визуализировать их в Power BI для принятия решений.',
         duration: '3 месяца (12 недель)',
         price: '120 000 ₸',
-        image: course2Image || '/placeholder.svg',
+        image: '/placeholder.svg',
         ctaText: 'Подробнее',
         popular: true,
       },
@@ -40,7 +37,7 @@ const Index = () => {
         description: 'Полный курс по аналитике данных: Excel, SQL, Python, Power BI для карьеры аналитика.',
         duration: '6 месяцев (24 недели)',
         price: '250 000 ₸',
-        image: course3Image || '/placeholder.svg',
+        image: '/placeholder.svg',
         ctaText: 'Подробнее',
       },
     ],
@@ -50,7 +47,7 @@ const Index = () => {
         description: 'Excel-дің озық функцияларын үйреніп, Power BI-де интерактивті дашбордтар жасаңыз.',
         duration: '2 ай (8 апта)',
         price: '80 000 ₸',
-        image: course1Image || '/placeholder.svg',
+        image: '/placeholder.svg',
         ctaText: 'Толығырақ',
       },
       {
@@ -58,7 +55,7 @@ const Index = () => {
         description: 'SQL көмегімен деректерді алуды және оларды шешім қабылдау үшін Power BI-де визуализациялауды үйреніңіз.',
         duration: '3 ай (12 апта)',
         price: '120 000 ₸',
-        image: course2Image || '/placeholder.svg',
+        image: '/placeholder.svg',
         ctaText: 'Толығырақ',
         popular: true,
       },
@@ -67,7 +64,7 @@ const Index = () => {
         description: 'Деректерді талдаудың толық курсы: Excel, SQL, Python, Power BI талдаушы мансабы үшін.',
         duration: '6 ай (24 апта)',
         price: '250 000 ₸',
-        image: course3Image || '/placeholder.svg',
+        image: '/placeholder.svg',
         ctaText: 'Толығырақ',
       },
     ],
