@@ -23,9 +23,9 @@ const CourseCard = ({
   popular = false 
 }: CourseCardProps) => {
   return (
-    <Card className="overflow-hidden border border-proitivity-neutral-medium/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 group">
+    <Card className="overflow-hidden border border-proitivity-neutral-medium/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 group relative">
       {popular && (
-        <div className="absolute top-4 right-4 z-10 bg-proitivity-green-dark text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md flex items-center space-x-1">
+        <div className="absolute top-4 right-4 z-20 bg-proitivity-green-dark text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md flex items-center space-x-1">
           <Star className="w-3 h-3 mr-1" />
           <span>{popular ? 'Популярный' : 'Popular'}</span>
         </div>
