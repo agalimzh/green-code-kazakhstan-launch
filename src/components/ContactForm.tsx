@@ -91,13 +91,14 @@ const ContactForm = ({ language }: ContactFormProps) => {
       const templateId = 'template_sjrrjgp';
       const publicKey = 'xZAgwMtbYsWERz5Es';
 
-      // Explicitly create the template parameters with the expected field names
+      // Create template parameters that exactly match the template variable names
       const templateParams = {
         name: formData.name,
         email: formData.email,
-        mobile: formData.mobile, // Ensure this matches your EmailJS template variable
-        phone: formData.mobile,  // Adding phone as a fallback in case the template uses this name
-        message: formData.message
+        phone: formData.mobile, // Use "phone" as the variable name for the template
+        mobile: formData.mobile, // Keep mobile as a backup
+        message: formData.message,
+        Телефон: formData.mobile, // Add the Russian label as it might be used in template
       };
       
       console.log('Form data before sending:', templateParams);
