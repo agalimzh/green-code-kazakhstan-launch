@@ -1,3 +1,4 @@
+
 import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -16,7 +17,7 @@ const ContactForm = ({ language }: ContactFormProps) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
+    mobile: '', // Changed from phone to mobile to match the template
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -74,7 +75,7 @@ const ContactForm = ({ language }: ContactFormProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.name || !formData.email || !formData.phone) {
+    if (!formData.name || !formData.email || !formData.mobile) {
       toast({
         title: language === 'ru' ? 'Ошибка' : 'Қате',
         description: language === 'ru' ? 'Пожалуйста, заполните все обязательные поля' : 'Барлық міндетті өрістерді толтырыңыз',
@@ -91,18 +92,21 @@ const ContactForm = ({ language }: ContactFormProps) => {
       const publicKey = 'xZAgwMtbYsWERz5Es';
 
       if (formRef.current) {
-        const nameInput = formRef.current.querySelector('input[name="name"]');
-        const emailInput = formRef.current.querySelector('input[name="email"]');
-        const phoneInput = formRef.current.querySelector('input[name="phone"]');
+        // Set form field names to match template variables
+        const nameInput = formRef.current.querySelector('input[id="name"]');
+        const emailInput = formRef.current.querySelector('input[id="email"]');
+        const mobileInput = formRef.current.querySelector('input[id="mobile"]');
+        const messageTextarea = formRef.current.querySelector('textarea[id="message"]');
         
         if (nameInput) nameInput.setAttribute('name', 'name');
         if (emailInput) emailInput.setAttribute('name', 'email');
-        if (phoneInput) phoneInput.setAttribute('name', 'phone');
+        if (mobileInput) mobileInput.setAttribute('name', 'mobile');
+        if (messageTextarea) messageTextarea.setAttribute('name', 'message');
         
         console.log('Form data before sending:', {
           name: formData.name,
           email: formData.email,
-          phone: formData.phone,
+          mobile: formData.mobile,
           message: formData.message
         });
 
@@ -120,7 +124,7 @@ const ContactForm = ({ language }: ContactFormProps) => {
           description: content[language].successMessage,
         });
         
-        setFormData({ name: '', email: '', message: '', phone: '' });
+        setFormData({ name: '', email: '', mobile: '', message: '' });
       }
     } catch (error) {
       console.error('Failed to send email:', error);
@@ -184,13 +188,13 @@ const ContactForm = ({ language }: ContactFormProps) => {
               </div>
               
               <div className="mb-6">
-                <label htmlFor="phone" className="block text-sm font-medium text-proitivity-neutral-dark mb-2">
+                <label htmlFor="mobile" className="block text-sm font-medium text-proitivity-neutral-dark mb-2">
                   {content[language].phone}
                 </label>
                 <Input
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
+                  id="mobile"
+                  name="mobile"
+                  value={formData.mobile}
                   onChange={handleChange}
                   className="w-full"
                   required
