@@ -22,8 +22,8 @@ const CourseCard = ({
   ctaText,
   popular = false 
 }: CourseCardProps) => {
-  // Google Drive syllabus link
-  const syllabusLink = "https://drive.google.com/drive/folders/1-0oYEWOuEKwZkepNUiDzI8miF5JaUMe_";
+  // Updated Google Drive syllabus link
+  const syllabusLink = "https://drive.google.com/file/d/1OkAAVbrZjE6IZIZj8VB9HRGprzmUNMHp/view";
   
   const handleCTAClick = () => {
     // Open syllabus in a new tab
