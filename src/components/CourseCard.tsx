@@ -22,8 +22,16 @@ const CourseCard = ({
   ctaText,
   popular = false 
 }: CourseCardProps) => {
+  // Google Drive syllabus link
+  const syllabusLink = "https://drive.google.com/drive/folders/1-0oYEWOuEKwZkepNUiDzI8miF5JaUMe_";
+  
   const handleCTAClick = () => {
-    // Scroll to contact form when clicking on course CTA button
+    // Open syllabus in a new tab
+    window.open(syllabusLink, '_blank');
+  };
+  
+  const handleSignUpClick = () => {
+    // Scroll to contact form when clicking on enroll button
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
   
@@ -65,12 +73,21 @@ const CourseCard = ({
       </CardContent>
       <CardFooter className="flex justify-between items-center border-t border-proitivity-neutral-medium/50 pt-4 bg-proitivity-neutral-light/30 group-hover:bg-proitivity-blue-light/20 transition-colors duration-300">
         <div className="font-bold text-lg">{price}</div>
-        <Button 
-          className="bg-proitivity-green-dark hover:bg-proitivity-green-light text-white group-hover:shadow-md transition-all duration-300"
-          onClick={handleCTAClick}
-        >
-          {ctaText}
-        </Button>
+        <div className="space-x-2">
+          <Button 
+            variant="outline"
+            className="border-proitivity-green-dark text-proitivity-green-dark hover:bg-proitivity-green-light hover:text-white transition-all duration-300"
+            onClick={handleCTAClick}
+          >
+            {ctaText}
+          </Button>
+          <Button 
+            className="bg-proitivity-green-dark hover:bg-proitivity-green-light text-white transition-all duration-300"
+            onClick={handleSignUpClick}
+          >
+            Записаться
+          </Button>
+        </div>
       </CardFooter>
     </Card>
   );

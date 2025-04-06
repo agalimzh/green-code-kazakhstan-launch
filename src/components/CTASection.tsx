@@ -40,7 +40,7 @@ const CTASection = ({ language }: CTASectionProps) => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 drop-shadow-md">{title}</h2>
           <p className="text-lg mb-8 max-w-2xl mx-auto opacity-90">{subtitle}</p>
           <Button 
-            className="bg-white text-proitivity-green-dark hover:bg-proitivity-blue-light hover:text-proitivity-green-dark text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
+            className="bg-[#F97316] text-white hover:bg-[#F97316]/90 text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 animate-pulse"
             onClick={handleSignUpClick}
           >
             {buttonText}
