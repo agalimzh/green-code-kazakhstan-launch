@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -75,7 +74,6 @@ const ContactForm = ({ language }: ContactFormProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate form
     if (!formData.name || !formData.email || !formData.phone) {
       toast({
         title: language === 'ru' ? 'Ошибка' : 'Қате',
@@ -88,34 +86,26 @@ const ContactForm = ({ language }: ContactFormProps) => {
     setIsSubmitting(true);
     
     try {
-      // Send email using EmailJS with provided credentials
       const serviceId = 'proitivity.school';
       const templateId = 'template_sjrrjgp';
       const publicKey = 'xZAgwMtbYsWERz5Es';
 
-      // Try using standard variable names that EmailJS templates typically recognize
-      const templateParams = {
-        user_name: formData.name,          // Common template variable
-        user_email: formData.email,        // Common template variable
-        user_phone: formData.phone,        // Common template variable
-        message: formData.message,         // Common template variable
-        
-        // Backup variables in case the template uses different naming patterns
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        
-        // Additional variables sometimes used in templates
-        subject: `New contact from ${formData.name}`,
-        from_name: formData.name,
-        to_name: 'Proitivity School',
-      };
-
-      console.log('Sending email with params:', templateParams);
-
-      // Send the email directly with the form reference
-      // This ensures all form fields are included in the submission
       if (formRef.current) {
+        const nameInput = formRef.current.querySelector('input[name="name"]');
+        const emailInput = formRef.current.querySelector('input[name="email"]');
+        const phoneInput = formRef.current.querySelector('input[name="phone"]');
+        
+        if (nameInput) nameInput.setAttribute('name', 'name');
+        if (emailInput) emailInput.setAttribute('name', 'email');
+        if (phoneInput) phoneInput.setAttribute('name', 'phone');
+        
+        console.log('Form data before sending:', {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message
+        });
+
         const result = await emailjs.sendForm(
           serviceId, 
           templateId, 
@@ -124,24 +114,17 @@ const ContactForm = ({ language }: ContactFormProps) => {
         );
         
         console.log('Email sent successfully:', result.text);
-      } else {
-        // Fallback to send method if form ref is not available
-        const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
-        console.log('Email sent successfully (fallback method):', result.text);
+        
+        toast({
+          title: language === 'ru' ? 'Успешно!' : 'Сәтті!',
+          description: content[language].successMessage,
+        });
+        
+        setFormData({ name: '', email: '', message: '', phone: '' });
       }
-      
-      // Show success message
-      toast({
-        title: language === 'ru' ? 'Успешно!' : 'Сәтті!',
-        description: content[language].successMessage,
-      });
-      
-      // Reset form
-      setFormData({ name: '', email: '', message: '', phone: '' });
     } catch (error) {
       console.error('Failed to send email:', error);
       
-      // Show error message
       toast({
         title: language === 'ru' ? 'Ошибка' : 'Қате',
         description: content[language].errorMessage,
@@ -154,7 +137,6 @@ const ContactForm = ({ language }: ContactFormProps) => {
 
   const handleOpenChat = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    // Implement chat functionality or redirect to chat service
     toast({
       title: language === 'ru' ? 'Чат' : 'Чат',
       description: language === 'ru' ? 'Функция чата скоро будет доступна' : 'Чат функциясы жақында қол жетімді болады',
