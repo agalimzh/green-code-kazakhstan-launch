@@ -1,10 +1,10 @@
-
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Mail, Phone, MessageCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
 
 interface ContactFormProps {
   language: 'ru' | 'kz';
@@ -12,6 +12,7 @@ interface ContactFormProps {
 
 const ContactForm = ({ language }: ContactFormProps) => {
   const { toast } = useToast();
+  const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -86,8 +87,25 @@ const ContactForm = ({ language }: ContactFormProps) => {
     setIsSubmitting(true);
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Send email using EmailJS
+      // Replace these with your actual EmailJS service ID, template ID, and public key
+      const serviceId = 'service_proitivity';
+      const templateId = 'template_contact_form';
+      const publicKey = 'YOUR_EMAILJS_PUBLIC_KEY';
+
+      // Prepare template parameters
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        from_phone: formData.phone,
+        message: formData.message,
+        to_email: 'proitivity.school@gmail.com',
+        subject: `Contact form message from ${formData.name}`
+      };
+
+      // Send the email
+      const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      console.log('Email sent successfully:', result.text);
       
       // Show success message
       toast({
@@ -98,6 +116,8 @@ const ContactForm = ({ language }: ContactFormProps) => {
       // Reset form
       setFormData({ name: '', email: '', phone: '', message: '' });
     } catch (error) {
+      console.error('Failed to send email:', error);
+      
       // Show error message
       toast({
         title: language === 'ru' ? 'Ошибка' : 'Қате',
@@ -128,7 +148,7 @@ const ContactForm = ({ language }: ContactFormProps) => {
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div className="bg-white p-8 rounded-lg shadow-lg border border-proitivity-neutral-medium">
-            <form onSubmit={handleSubmit}>
+            <form ref={formRef} onSubmit={handleSubmit}>
               <div className="mb-6">
                 <label htmlFor="name" className="block text-sm font-medium text-proitivity-neutral-dark mb-2">
                   {name}
