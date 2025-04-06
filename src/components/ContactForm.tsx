@@ -1,3 +1,4 @@
+
 import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -90,10 +91,12 @@ const ContactForm = ({ language }: ContactFormProps) => {
       const templateId = 'template_sjrrjgp';
       const publicKey = 'xZAgwMtbYsWERz5Es';
 
+      // Explicitly create the template parameters with the expected field names
       const templateParams = {
         name: formData.name,
         email: formData.email,
-        mobile: formData.mobile,
+        mobile: formData.mobile, // Ensure this matches your EmailJS template variable
+        phone: formData.mobile,  // Adding phone as a fallback in case the template uses this name
         message: formData.message
       };
       
