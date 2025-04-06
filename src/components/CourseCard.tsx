@@ -1,5 +1,5 @@
 
-import { Clock, Users, Award } from 'lucide-react';
+import { Clock, Users, Award, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 
@@ -23,24 +23,26 @@ const CourseCard = ({
   popular = false 
 }: CourseCardProps) => {
   return (
-    <Card className="card-hover overflow-hidden border border-proitivity-neutral-medium">
+    <Card className="overflow-hidden border border-proitivity-neutral-medium/50 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 group">
       {popular && (
-        <div className="absolute top-4 right-4 bg-proitivity-green-dark text-white text-xs font-semibold px-3 py-1 rounded-full">
-          Популярный
+        <div className="absolute top-4 right-4 z-10 bg-proitivity-green-dark text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md flex items-center space-x-1">
+          <Star className="w-3 h-3 mr-1" />
+          <span>{popular ? 'Популярный' : 'Popular'}</span>
         </div>
       )}
       <div className="relative h-48 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-proitivity-green-dark/20 z-[1] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         <img 
           src={image} 
           alt={title} 
-          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
       </div>
       <CardHeader className="pb-2">
-        <h3 className="text-xl font-semibold text-proitivity-green-dark">{title}</h3>
+        <h3 className="text-xl font-semibold text-proitivity-green-dark group-hover:text-gradient transition-all duration-300">{title}</h3>
       </CardHeader>
       <CardContent className="pb-4">
-        <p className="text-proitivity-neutral-dark mb-4">{description}</p>
+        <p className="text-proitivity-neutral-dark mb-4 line-clamp-3">{description}</p>
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2 text-sm text-proitivity-neutral-dark">
             <Clock size={16} className="text-proitivity-green-light" />
@@ -56,9 +58,9 @@ const CourseCard = ({
           </div>
         </div>
       </CardContent>
-      <CardFooter className="flex justify-between items-center border-t border-proitivity-neutral-medium pt-4">
+      <CardFooter className="flex justify-between items-center border-t border-proitivity-neutral-medium/50 pt-4 bg-proitivity-neutral-light/30 group-hover:bg-proitivity-blue-light/20 transition-colors duration-300">
         <div className="font-bold text-lg">{price}</div>
-        <Button className="bg-proitivity-green-dark hover:bg-proitivity-green-light text-white">
+        <Button className="bg-proitivity-green-dark hover:bg-proitivity-green-light text-white group-hover:shadow-md transition-all duration-300">
           {ctaText}
         </Button>
       </CardFooter>
