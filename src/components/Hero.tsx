@@ -61,7 +61,7 @@ const Hero = ({ language }: HeroProps) => {
               <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-proitivity-green-light to-proitivity-blue-dark opacity-60 blur-xl animate-pulse"></div>
               <div className="absolute -inset-1 rounded-lg bg-white/30 backdrop-blur-sm"></div>
               <img 
-                src="/placeholder.svg" 
+                src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
                 alt="IT Education" 
                 className="object-cover rounded-lg shadow-xl relative w-full max-w-lg transform transition-transform hover:scale-105 duration-500"
               />
