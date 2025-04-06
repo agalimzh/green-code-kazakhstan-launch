@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -17,7 +16,7 @@ const ContactForm = ({ language }: ContactFormProps) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    mobile: '', // Changed from phone to mobile to match the template
+    mobile: '',
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -91,41 +90,30 @@ const ContactForm = ({ language }: ContactFormProps) => {
       const templateId = 'template_sjrrjgp';
       const publicKey = 'xZAgwMtbYsWERz5Es';
 
-      if (formRef.current) {
-        // Set form field names to match template variables
-        const nameInput = formRef.current.querySelector('input[id="name"]');
-        const emailInput = formRef.current.querySelector('input[id="email"]');
-        const mobileInput = formRef.current.querySelector('input[id="mobile"]');
-        const messageTextarea = formRef.current.querySelector('textarea[id="message"]');
-        
-        if (nameInput) nameInput.setAttribute('name', 'name');
-        if (emailInput) emailInput.setAttribute('name', 'email');
-        if (mobileInput) mobileInput.setAttribute('name', 'mobile');
-        if (messageTextarea) messageTextarea.setAttribute('name', 'message');
-        
-        console.log('Form data before sending:', {
-          name: formData.name,
-          email: formData.email,
-          mobile: formData.mobile,
-          message: formData.message
-        });
+      const templateParams = {
+        name: formData.name,
+        email: formData.email,
+        mobile: formData.mobile,
+        message: formData.message
+      };
+      
+      console.log('Form data before sending:', templateParams);
 
-        const result = await emailjs.sendForm(
-          serviceId, 
-          templateId, 
-          formRef.current, 
-          publicKey
-        );
-        
-        console.log('Email sent successfully:', result.text);
-        
-        toast({
-          title: language === 'ru' ? 'Успешно!' : 'Сәтті!',
-          description: content[language].successMessage,
-        });
-        
-        setFormData({ name: '', email: '', mobile: '', message: '' });
-      }
+      const result = await emailjs.send(
+        serviceId, 
+        templateId, 
+        templateParams, 
+        publicKey
+      );
+      
+      console.log('Email sent successfully:', result.text);
+      
+      toast({
+        title: language === 'ru' ? 'Успешно!' : 'Сәтті!',
+        description: content[language].successMessage,
+      });
+      
+      setFormData({ name: '', email: '', mobile: '', message: '' });
     } catch (error) {
       console.error('Failed to send email:', error);
       
