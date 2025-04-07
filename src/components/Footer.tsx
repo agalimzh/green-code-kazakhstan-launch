@@ -1,5 +1,5 @@
 
-import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { Instagram, Linkedin, MessageSquare, Phone } from 'lucide-react';
 
 interface FooterProps {
   language: 'ru' | 'kz';
@@ -51,17 +51,17 @@ const Footer = ({ language }: FooterProps) => {
             <p className="text-white/80 mb-4">{category}</p>
             <p className="text-white/80 mb-4">{address}</p>
             <div className="flex space-x-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-white/80 hover:text-white transition-colors">
-                <Facebook size={20} />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-white/80 hover:text-white transition-colors">
+              <a href="https://www.instagram.com/proitivity/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-white/80 hover:text-white transition-colors">
                 <Instagram size={20} />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="text-white/80 hover:text-white transition-colors">
-                <Twitter size={20} />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-white/80 hover:text-white transition-colors">
+              <a href="https://www.linkedin.com/in/arsen-galimzhanov/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-white/80 hover:text-white transition-colors">
                 <Linkedin size={20} />
+              </a>
+              <a href="https://wa.me/77760076442" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="text-white/80 hover:text-white transition-colors">
+                <Phone size={20} />
+              </a>
+              <a href="https://t.me/proitivity" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="text-white/80 hover:text-white transition-colors">
+                <MessageSquare size={20} />
               </a>
             </div>
           </div>
