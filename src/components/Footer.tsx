@@ -1,5 +1,5 @@
 
-import { Instagram, Linkedin, MessageSquare, Phone, Telegram, Smartphone } from 'lucide-react';
+import { Instagram, Linkedin, MessageSquare, Send, Smartphone } from 'lucide-react';
 
 interface FooterProps {
   language: 'ru' | 'kz';
@@ -61,7 +61,7 @@ const Footer = ({ language }: FooterProps) => {
                 <Smartphone size={20} />
               </a>
               <a href="https://t.me/proitivity" target="_blank" rel="noopener noreferrer" aria-label="Telegram" className="text-white/80 hover:text-white transition-colors">
-                <Telegram size={20} />
+                <Send size={20} />
               </a>
             </div>
           </div>
